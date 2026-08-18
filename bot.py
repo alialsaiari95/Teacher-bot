@@ -1,4 +1,19 @@
 import os
+from threading import Thread
+from flask import Flask
+
+app = Flask('')
+
+@app.route('/')
+def home():
+  return 'Bot is active'
+
+def run():
+  port = int(os.environ.get('PORT', 8080))
+  app.run(host='0.0.0.0', port=port)
+
+Thread(target=run).start()
+import os
 import telebot
 from telebot import types
 import google.generativeai as genai
